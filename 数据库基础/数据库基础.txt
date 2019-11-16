@@ -1,0 +1,110 @@
+数据库基础
+什么是数据库：
+
+存储数据用文件就可以了，为什么还要弄个数据库?
+文件保存数据有以下几个缺点：
+文件的安全性问题 、文件不利于数据查询和管理 、文件不利于存储海量数据 、文件在程序中控制不方便
+数据库存储介质：
+磁盘 内存
+为了解决上述问题，专家们设计出更加利于管理数据的软件——数据库，它能更有效的管理数据。数据 库可以提供远程服务，即通过远程连接来使用数据库，因此也称为数据库服务器。
+数据库分类：
+数据库大体可以分为 关系型数据库 和 非关系型数据库
+关系型数据库（RDBMS）：
+是指采用了关系模型来组织数据的数据库。
+简单来说，关系模型指的就是二维表格模型，而一个 关系型数据库就是由二维表及其之间的联系所组成的一个数据组织。
+基于标准的SQL，只是内部一些实现有区别。常用的关系型数据库如：
+Oracle：甲骨文产品，适合大型项目，适用于做复杂的业务逻辑，如ERP、OA等企业信息系 统。收费。
+MySQL：属于甲骨文，不适合做复杂的业务。开源免费。
+SQL Server：微软的产品，安装部署在windows server上，适用于中大型项目。收费。
+非关系型数据库：
+不规定基于SQL实现。现在更多是指NoSQL数据库，如：
+基于键值对（Key-Value）：如 memcached、redis
+基于文档型：如 mongodb
+基于列族：如 hbase
+基于图型：如 neo4j
+
+关系型数据库和非关系型数据库区别
+
+
+MYSQL安装
+
+解压MySQL：如解压到D:\Tools\mysql-5.7.27-winx64 配置环境变量：
+右键 此电脑 -> 高级系统设置 -> 环境变量 -> 在下面 系统变量栏 点击 新建 -
+
+变量名：MYSQL_HOME
+变量值：为MySQL解压的根目录，我这里为D:\Tools\mysql-5.7.27-winx64
+在 系统变量栏 找到 Path 变量并双击：
+Win10中点击 新建 以添加新的路径：
+%MYSQL_HOME%\bin
+
+说明：
+需要执行某个指令，如D:\Tools\mysql-5.7.27-winx64\bin\mysqld.exe，需要在cmd中输入 全路径，或切换到D:\Tools\mysql-5.7.27-winx64\bin目录下执行mysqld.exe。为方便操 作，如在cmd可以直接输入mysqld执行该指令，可以按以上配置：
+以上配置 %MYSQL_HOME% 代表引用的 MYSQL_HOME 环境变量，即 D:\Tools\mysql-5.7.27-winx64。
+配置在 Path 中，表示设置 %MYSQL_HOME%\bin 路径为全局路径，全局路径下的 指令可以直接执行。
+
+配置MySQL初始化文件：
+
+在MySQL根目录下创建初始化文件my.ini，即D:\Tools\mysql-5.7.27-winx64\my.ini。内容 如下：
+[mysql] 
+#设置mysql客户端默认字符集
+ default-character-set=utf8 
+ [mysqld] 
+ #设置3306端口 
+ port = 3306
+# 设置mysql的安装目录
+ basedir=D:\Tools\mysql-5.7.27-winx64
+# 设置mysql数据库的数据的存放目录 
+datadir=D:\Tools\mysql-5.7.27-winx64\data
+# 允许最大连接数 max_connections=200
+# 服务端使用的字符集默认为8比特编码的latin1字符集 
+character-set-server=utf8
+# 创建新表时将使用的默认存储引擎
+ default-storage-engine=innodb
+
+将以上 basedir 和 datadir 后的内容替换成自己的路径。
+注意：需要保存为ANSI编码。方法一：使用记事本打开，保存/另存为，选择ANSI编码。方 法二：使用Notpad++打开，点击编码->转为ANSI编码->保存。
+
+初始化MySQL
+右键点击cmd，选择 以管理员身份运行，执行以下命令
+mysqld --initialize-insecure
+以上初始化操作完成后，可以看到在MySQL根目录下生成了data目录。
+初始化的MySQL会生成超级管理员，账户名 root ，密码为空
+安装MySQL服务 cmd执行： mysqld install
+此时执行 win+r 输入 services.msc 打开服务管理器，可以看到MySQL服务
+运行/停止MySQL服务端 cmd执行
+net start mysql
+net stop mysql
+
+客户端连接MYSQL服务器
+
+MySQL默认只允许在服务器本机 使用 root 用户登录，要开启 root 用户的远程登录
+在MySQL服务器 本机执行：
+mysql -u root -p
+要求输入密码，没有设置密码则直接回车
+
+进入MySQL命令行以后，可以看到 mysql>
+– 使用mysql数据库
+
+use mysql;
+ 
+-- 更新用户表的root账户，设置为任意ip都可以访问，密码修改为123456 
+
+update user set host="%",authentication_string=password('root') where user="root";
+
+-- 刷新权限
+ flush privileges;
+
+退出
+
+quit；
+
+SQL分类
+DDL数据定义语言，用来维护存储数据的结构
+代表指令: create, drop, alter
+DML数据操纵语言，用来对数据进行操作
+代表指令： insert，delete，update
+DML中又单独分了一个DQL，数据查询语言，
+代表指令： select
+DCL数据控制语言，主要负责权限管理和事务
+代表指令： grant，revoke，commit
+以上SQL我们主要会在后面学习DDL和DML的操作。
