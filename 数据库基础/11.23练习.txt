@@ -1,0 +1,266 @@
+Microsoft Windows [版本 10.0.17134.1130]
+(c) 2018 Microsoft Corporation。保留所有权利。
+
+C:\Users\Administrator>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.27 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use test;
+Database changed
+mysql> select * from stu;
+ERROR 1146 (42S02): Table 'test.stu' doesn't exist
+mysql> select*from stu;
+ERROR 1146 (42S02): Table 'test.stu' doesn't exist
+mysql> SELECT * FROM stu;
+ERROR 1146 (42S02): Table 'test.stu' doesn't exist
+mysql> SELECT * FROM text.stu;
+ERROR 1146 (42S02): Table 'text.stu' doesn't exist
+mysql> SELECT * FROM test.stu;
+ERROR 1146 (42S02): Table 'test.stu' doesn't exist
+mysql> select * from stu;
+ERROR 1146 (42S02): Table 'test.stu' doesn't exist
+mysql> DROP TABLE IF EXISTS exam_result;
+Query OK, 0 rows affected (0.50 sec)
+
+mysql> CREATE TABLE exam_result (
+    -> id INT,
+    -> name VARCHAR(20),
+    -> chinese DECIMAL(3,1),
+    -> math DECIMAL(3,1),
+    -> english DECIMAL(3,1) );
+Query OK, 0 rows affected (0.37 sec)
+
+mysql> INSERT INTO exam_result (id,name, chinese, math, english) VALUES
+    -> (1,'唐三藏', 67, 98, 56),
+    -> (2,'孙悟空', 87.5, 78, 77),
+    -> (3,'猪悟能', 88, 98.5, 90),
+    -> (4,'曹孟德', 82, 84, 67),
+    -> (5,'刘玄德', 55.5, 85, 45),
+    -> (6,'孙权', 70, 73, 78.5),
+    -> (7,'宋公明', 75, 65, 30);
+Query OK, 7 rows affected (0.05 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM exam_result;
++------+-----------+---------+------+---------+
+| id   | name      | chinese | math | english |
++------+-----------+---------+------+---------+
+|    1 | 唐三藏    |    67.0 | 98.0 |    56.0 |
+|    2 | 孙悟空    |    87.5 | 78.0 |    77.0 |
+|    3 | 猪悟能    |    88.0 | 98.5 |    90.0 |
+|    4 | 曹孟德    |    82.0 | 84.0 |    67.0 |
+|    5 | 刘玄德    |    55.5 | 85.0 |    45.0 |
+|    6 | 孙权      |    70.0 | 73.0 |    78.5 |
+|    7 | 宋公明    |    75.0 | 65.0 |    30.0 |
++------+-----------+---------+------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from exam_result where name like '%孙%';
++------+-----------+---------+------+---------+
+| id   | name      | chinese | math | english |
++------+-----------+---------+------+---------+
+|    2 | 孙悟空    |    87.5 | 78.0 |    77.0 |
+|    6 | 孙权      |    70.0 | 73.0 |    78.5 |
++------+-----------+---------+------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from exam_result;
++------+-----------+---------+------+---------+
+| id   | name      | chinese | math | english |
++------+-----------+---------+------+---------+
+|    1 | 唐三藏    |    67.0 | 98.0 |    56.0 |
+|    2 | 孙悟空    |    87.5 | 78.0 |    77.0 |
+|    3 | 猪悟能    |    88.0 | 98.5 |    90.0 |
+|    4 | 曹孟德    |    82.0 | 84.0 |    67.0 |
+|    5 | 刘玄德    |    55.5 | 85.0 |    45.0 |
+|    6 | 孙权      |    70.0 | 73.0 |    78.5 |
+|    7 | 宋公明    |    75.0 | 65.0 |    30.0 |
++------+-----------+---------+------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from exam_result limit 2,2;
++------+-----------+---------+------+---------+
+| id   | name      | chinese | math | english |
++------+-----------+---------+------+---------+
+|    3 | 猪悟能    |    88.0 | 98.5 |    90.0 |
+|    4 | 曹孟德    |    82.0 | 84.0 |    67.0 |
++------+-----------+---------+------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from exam_result limit 1,1;
++------+-----------+---------+------+---------+
+| id   | name      | chinese | math | english |
++------+-----------+---------+------+---------+
+|    2 | 孙悟空    |    87.5 | 78.0 |    77.0 |
++------+-----------+---------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> drop table if exists student;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> CREATE TABLE student (    id INT NOT NULL,    sn INT,    name VARCHAR(20),    qq_mail VARCHAR(20) )^Z;
+Query OK, 0 rows affected (0.64 sec)
+
+mysql> drop table if exists student;
+Query OK, 0 rows affected (0.22 sec)
+
+mysql>
+mysql> select * from student；
+    -> select * from student；;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from student；' at line 2
+mysql> select * from student;
+ERROR 1146 (42S02): Table 'test.student' doesn't exist
+mysql> CREATE TABLE student (
+    -> id INT NOT NULL,
+    -> sn INT,
+    -> name VARCHAR(20),
+    -> qq_mail VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.49 sec)
+
+mysql> ^C
+mysql> -- 创建班级表，有使用MySQL关键字作为字段时，需要使用``来标识
+mysql> DROP TABLE IF EXISTS classes;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> CREATE TABLE classes (
+    -> id INT PRIMARY KEY auto_increment,
+    -> name VARCHAR(20),
+    -> `desc` VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.52 sec)
+
+mysql>
+mysql> -- 重新设置学生表结构
+mysql> DROP TABLE IF EXISTS student;
+Query OK, 0 rows affected (0.22 sec)
+
+mysql> CREATE TABLE student (
+    ->     id INT PRIMARY KEY auto_increment,
+    ->     sn INT UNIQUE,
+    ->     name VARCHAR(20) DEFAULT 'unkown',
+    ->     qq_mail VARCHAR(20),
+    -> classes_id int,
+    -> FOREIGN KEY (classes_id) REFERENCES classes(id)
+    -> );
+Query OK, 0 rows affected (0.61 sec)
+
+mysql>
+mysql> -- 创建课程表
+mysql> DROP TABLE IF EXISTS course;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> CREATE TABLE course (
+    ->     id INT PRIMARY KEY auto_increment,
+    ->     name VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.36 sec)
+
+mysql>
+mysql> -- 创建课程学生中间表：考试成绩表
+mysql> DROP TABLE IF EXISTS score;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> CREATE TABLE score (
+    ->     id INT PRIMARY KEY auto_increment,
+    -> score DECIMAL(3, 1),
+    ->     student_id int,
+    -> course_id int,
+    -> FOREIGN KEY (student_id) REFERENCES student(id),
+    -> FOREIGN KEY (course_id) REFERENCES course(id)
+    -> );
+Query OK, 0 rows affected (0.48 sec)
+
+mysql> insert into classes(name, `desc`) values
+    -> ('计算机系2019级1班', '学习了计算机原理、C和Java语言、数据结构和算法'),
+    -> ('中文系2019级3班','学习了中国传统文学'),
+    -> ('自动化2019级5班','学习了机械自动化');
+Query OK, 3 rows affected (0.37 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into student(sn, name, qq_mail, classes_id) values
+    -> ('09982','黑旋风李逵','xuanfeng@qq.com',1),
+    -> ('00835','菩提老祖',null,1),
+    -> ('00391','白素贞',null,1),
+    -> ('00031','许仙','xuxian@qq.com',1),
+    -> ('00054','不想毕业',null,1),
+    -> ('51234','好好说话','say@qq.com',2),
+    -> ('83223','tellme',null,2),
+    -> ('09527','老外学中文','foreigner@qq.com',2);
+Query OK, 8 rows affected (0.18 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> insert into course(name) values
+    -> ('Java'),('中国传统文化'),('计算机原理'),('语文'),('高阶数学'),('英文');
+Query OK, 6 rows affected (0.13 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> insert into score(score, student_id, course_id) values
+    -> -- 黑旋风李逵
+    -> (70.5, 1, 1),(98.5, 1, 3),(33, 1, 5),(98, 1, 6),
+    -> -- 菩提老祖
+    -> (60, 2, 1),(59.5, 2, 5),
+    -> -- 白素贞
+    -> (33, 3, 1),(68, 3, 3),(99, 3, 5),
+    -> -- 许仙
+    -> (67, 4, 1),(23, 4, 3),(56, 4, 5),(72, 4, 6),
+    -> -- 不想毕业
+    -> (81, 5, 1),(37, 5, 5),-- 好好说话
+    -> (56, 6, 2),(43, 6, 4),(79, 6, 6),
+    -> -- tellme
+    -> (80, 7, 2),(92, 7, 6);
+Query OK, 20 rows affected (0.18 sec)
+Records: 20  Duplicates: 0  Warnings: 0
+
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql>
