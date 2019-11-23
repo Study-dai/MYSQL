@@ -1,0 +1,62 @@
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
+import javax.sql.DataSource;
+import java.math.BigDecimal;
+import java.sql.*;
+
+public class BD2 {
+    private static final String URL = "jdbc:mysql://localhost:3306/test";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "root";
+
+    public static void main(String[] args) {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            //获取数据连接池，由连接池获取连接
+            DataSource ds=new MysqlDataSource();
+            ((MysqlDataSource)ds).setURL(URL);
+            ((MysqlDataSource)ds).setUser(USERNAME);
+            ((MysqlDataSource)ds).setURL(PASSWORD);
+            connection=ds.getConnection();
+            System.out.println(connection);
+//            Class.forName("com.mysql.jdbc.Driver");
+//            connection = DriverManager
+//                    .getConnection(URL, USERNAME, PASSWORD);
+//            System.out.println(connection);
+//            statement = connection.createStatement();
+            String sql = "select id,name,chinese,math,english" +
+                    " from exam_result where name=?";
+            // 根据连接创建SQL操作对象Statement
+            statement=connection.prepareStatement(sql);
+            ((PreparedStatement) statement).setString(1,"孙悟空");
+            System.out.println(sql);
+            //根据操作对象Statement执行SQL语句，返回结果集Resultset
+            resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                int        id = resultSet.getInt("id");
+                String     name = resultSet.getString("name");
+                BigDecimal chinese = resultSet.getBigDecimal("chinese");
+                BigDecimal math = resultSet.getBigDecimal("math");
+                BigDecimal english = resultSet.getBigDecimal("english");
+                System.out.printf("id=%s,name=%s,chinese=%s,math=%s" +
+                        ",english=%s", id, name, chinese, math, english);
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(resultSet != null)
+                    resultSet.close();
+                if(statement != null)
+                    statement.close();
+                if(connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
