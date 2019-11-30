@@ -1,0 +1,994 @@
+Microsoft Windows [°æ±¾ 10.0.17134.1130]
+(c) 2018 Microsoft Corporation¡£±£ÁôËùÓÐÈ¨Àû¡£
+
+C:\Users\Administrator>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 35
+Server version: 5.7.27 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> drop table stu_test;
+ERROR 1046 (3D000): No database selected
+mysql> drop table test;
+ERROR 1046 (3D000): No database selected
+mysql> drop schema test;
+ERROR 1008 (HY000): Can't drop database 'test'; database doesn't exist
+mysql> create table stu (
+    -> id int,
+    -> name varchar(20) comment 'ÐÕÃû',
+    -> password varchar(50) comment 'ÃÜÂë',
+    -> age int,
+    ->  sex varchar(1),
+    -> birthday timestamp,
+    -> amount decimal(11,2),
+    -> resume text
+    ->  );
+ERROR 1046 (3D000): No database selected
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE DATABASE IF NOT EXISTS db_test CHARACTER SET utf8mb4;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE test£»
+ERROR 1049 (42000): Unknown database 'test£»'
+mysql> USE test;
+ERROR 1049 (42000): Unknown database 'test'
+mysql> use db_test;
+Database changed
+mysql> create table stu (
+    ->     -> id int,
+    ->     -> name varchar(20) comment 'ÐÕÃû',
+    ->     -> password varchar(50) comment 'ÃÜÂë',
+    ->     -> age int,
+    ->     ->  sex varchar(1),
+    ->     -> birthday timestamp,
+    ->     -> amount decimal(11,2),
+    ->     -> resume text
+    ->     ->  );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> id int,
+    -> name varchar(20) comment 'ÐÕÃû',
+    -> password varchar(50)' at line 2
+mysql> create table stu (
+    -> id int,
+    -> name varchar(20) comment 'ÐÕÃû',
+    -> password varchar(50) comment 'ÃÜÂë',
+    -> age int,
+    ->  sex varchar(1),
+    -> birthday timestamp,
+    -> amount decimal(11,2),
+    -> resume text
+    ->  );
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_db_test |
++-------------------+
+| stu               |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> drop databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databases' at line 1
+mysql> drop databases db_test;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databases db_test' at line 1
+mysql> drop databases if exists db_test;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databases if exists db_test' at line 1
+mysql> create table stu (
+    -> id int,
+    -> name varchar(20) comment 'ÐÕÃû',
+    -> password varchar(50) comment 'ÃÜÂë',
+    -> age int,
+    ->  sex varchar(1),
+    -> birthday timestamp,
+    -> amount decimal(11,2),
+    -> resume text
+    ->  );
+ERROR 1050 (42S01): Table 'stu' already exists
+mysql> drop databases db_test;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databases db_test' at line 1
+mysql> show databses;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databses' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| db_test            |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> drop db_test;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'db_test' at line 1
+mysql> drop database db_test;
+Query OK, 1 row affected (0.30 sec)
+
+mysql> create table stu (
+    -> id int,
+    -> name varchar(20) comment 'ÐÕÃû',
+    -> password varchar(50) comment 'ÃÜÂë',
+    -> age int,
+    ->  sex varchar(1),
+    -> birthday timestamp,
+    -> amount decimal(11,2),
+    -> resume text
+    ->  );
+ERROR 1046 (3D000): No database selected
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql>           create table stu (
+    -> id int,
+    -> name varchar(20) comment 'ÐÕÃû',
+    -> password varchar(50) comment 'ÃÜÂë',
+    -> age int,
+    ->  sex varchar(1),
+    -> birthday timestamp,
+    -> amount decimal(11,2),
+    -> resume text
+    ->  )
+    -> ;
+ERROR 1046 (3D000): No database selected
+mysql> CREATE DATABASE IF NOT EXISTS db_test CHARACTER SET utf8mb4;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use test;
+ERROR 1049 (42000): Unknown database 'test'
+mysql> drop database db_test;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CREATE DATABASE IF NOT EXISTS test CHARACTER SET utf8mb4;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use test;
+Database changed
+mysql> create table stu (
+    -> id int,
+    -> name varchar(20) comment 'ÐÕÃû',
+    -> password varchar(50) comment 'ÃÜÂë',
+    -> age int,
+    ->  sex varchar(1),
+    -> birthday timestamp,
+    -> amount decimal(11,2),
+    -> resume text
+    ->  );
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> desc stu;
++----------+---------------+------+-----+-------------------+-----------------------------+
+| Field    | Type          | Null | Key | Default           | Extra                       |
++----------+---------------+------+-----+-------------------+-----------------------------+
+| id       | int(11)       | YES  |     | NULL              |                             |
+| name     | varchar(20)   | YES  |     | NULL              |                             |
+| password | varchar(50)   | YES  |     | NULL              |                             |
+| age      | int(11)       | YES  |     | NULL              |                             |
+| sex      | varchar(1)    | YES  |     | NULL              |                             |
+| birthday | timestamp     | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| amount   | decimal(11,2) | YES  |     | NULL              |                             |
+| resume   | text          | YES  |     | NULL              |                             |
++----------+---------------+------+-----+-------------------+-----------------------------+
+8 rows in set (0.00 sec)
+
+mysql> desc stu;
++----------+---------------+------+-----+-------------------+-----------------------------+
+| Field    | Type          | Null | Key | Default           | Extra                       |
++----------+---------------+------+-----+-------------------+-----------------------------+
+| id       | int(11)       | YES  |     | NULL              |                             |
+| name     | varchar(20)   | YES  |     | NULL              |                             |
+| password | varchar(50)   | YES  |     | NULL              |                             |
+| age      | int(11)       | YES  |     | NULL              |                             |
+| sex      | varchar(1)    | YES  |     | NULL              |                             |
+| birthday | timestamp     | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| amount   | decimal(11,2) | YES  |     | NULL              |                             |
+| resume   | text          | YES  |     | NULL              |                             |
++----------+---------------+------+-----+-------------------+-----------------------------+
+8 rows in set (0.00 sec)
+
+mysql> desc stu;
++----------+---------------+------+-----+-------------------+-----------------------------+
+| Field    | Type          | Null | Key | Default           | Extra                       |
++----------+---------------+------+-----+-------------------+-----------------------------+
+| id       | int(11)       | YES  |     | NULL              |                             |
+| name     | varchar(20)   | YES  |     | NULL              |                             |
+| password | varchar(50)   | YES  |     | NULL              |                             |
+| age      | int(11)       | YES  |     | NULL              |                             |
+| sex      | varchar(1)    | YES  |     | NULL              |                             |
+| birthday | timestamp     | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| amount   | decimal(11,2) | YES  |     | NULL              |                             |
+| resume   | text          | YES  |     | NULL              |                             |
++----------+---------------+------+-----+-------------------+-----------------------------+
+8 rows in set (0.00 sec)
+
+mysql> create database if not exists dai32mall default character set utf8;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use dai32mall;
+Database changed
+mysql> create table if not exists goods
+    -> (
+    -> id int
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> create table if not exists goods
+    -> (
+    -> g_id int ,
+    -> g_name varchar(32),
+    -> unitprice int,
+    -> category varchar(12),
+    -> provider varchar(64)
+    -> );
+Query OK, 0 rows affected (0.54 sec)
+
+mysql> desc goods;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| g_id      | int(11)     | YES  |     | NULL    |       |
+| g_name    | varchar(32) | YES  |     | NULL    |       |
+| unitprice | int(11)     | YES  |     | NULL    |       |
+| category  | varchar(12) | YES  |     | NULL    |       |
+| provider  | varchar(64) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table if not exists customer
+    -> (
+    -> c_id int ,
+    -> c_name varchar(32),
+    -> email varchar(64),
+    -> card_id carchar(18)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'carchar(18)
+)' at line 6
+mysql> create table if not exists customer
+    ->     -> (
+    ->     -> c_id int ,
+    ->     -> c_name varchar(32),
+    ->     -> email varchar(64),
+    ->     -> card_id varchar(18),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> (
+    -> c_id int ,
+    -> c_name varchar(32),
+    -> email varchar(64),
+    ' at line 2
+mysql> create table if not exists customer
+    -> (
+    ->  customer_id  int comment '¿Í»§±àºÅ',
+    ->  name varchar(32) comment '¿Í»§ÐÕÃû',
+    ->  address  varchar(256) comment '¿Í»§µØÖ·',
+    ->  email  varchar(64) comment 'µç×ÓÓÊÏä',
+    ->  sex bit comment 'ÐÔ±ð',
+    ->  card_id varchar(18) comment 'Éí·ÝÖ¤'
+    -> );
+Query OK, 0 rows affected (0.75 sec)
+
+mysql> desc customer;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| customer_id | int(11)      | YES  |     | NULL    |       |
+| name        | varchar(32)  | YES  |     | NULL    |       |
+| address     | varchar(256) | YES  |     | NULL    |       |
+| email       | varchar(64)  | YES  |     | NULL    |       |
+| sex         | bit(1)       | YES  |     | NULL    |       |
+| card_id     | varchar(18)  | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> create table if not exists purchase;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> create table if not exists purchase
+    -> (
+    -> order_id int
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> create table if not exists purchase
+    -> (
+    -> order_id int,
+    -> customer_id int ,
+    -> g-id int ,
+    -> nums int
+    -> 0£»
+    -> £»
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-id int ,
+nums int
+0£»
+£»' at line 5
+mysql>  create table if not exists purchase
+    ->     -> (
+    ->     -> order_id int,
+    ->     -> customer_id int ,
+    ->     -> g-id int ,
+    ->     -> nums int,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> (
+    -> order_id int,
+    -> customer_id int ,
+    -> g-id int ,
+    -> nums' at line 2
+mysql>  create table if not exists purchase
+    ->     -> (
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> (' at line 2
+mysql>  create table if not exists purchase
+    -> (
+    -> order_id  int comment '¶©µ¥ºÅ',
+    ->  customer_id int comment '¿Í»§±àºÅ',
+    ->  goods_id  int comment 'ÉÌÆ·±àºÅ',
+    ->  nums  int comment '¹ºÂòÊýÁ¿'
+    -> );
+Query OK, 0 rows affected (0.66 sec)
+
+mysql> desc purchase;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| order_id    | int(11) | YES  |     | NULL    |       |
+| customer_id | int(11) | YES  |     | NULL    |       |
+| goods_id    | int(11) | YES  |     | NULL    |       |
+| nums        | int(11) | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> DROP TABLE IF EXISTS student;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> CREATE TABLE student (
+    ->  id INT,
+    ->  sn INT comment 'Ñ§ºÅ',
+    ->  name VARCHAR(20) comment 'ÐÕÃû',
+    ->  qq_mail VARCHAR(20) comment 'QQÓÊÏä'
+    -> );
+Query OK, 0 rows affected (0.82 sec)
+
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int(11)     | YES  |     | NULL    |       |
+| sn      | int(11)     | YES  |     | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| qq_mail | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student values(100,10000,'tsz',null);
+Query OK, 1 row affected (0.31 sec)
+
+mysql> insert into student values(101,10001,'swk','11111');
+Query OK, 1 row affected (0.32 sec)
+
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int(11)     | YES  |     | NULL    |       |
+| sn      | int(11)     | YES  |     | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| qq_mail | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+-------+------+---------+
+| id   | sn    | name | qq_mail |
++------+-------+------+---------+
+|  100 | 10000 | tsz  | NULL    |
+|  101 | 10001 | swk  | 11111   |
++------+-------+------+---------+
+2 rows in set (0.00 sec)
+
+mysql> insert  into sutdent (id,sn,name)values
+    -> (102,20001,'cmd'),
+    -> (103,20002,'szm');
+ERROR 1146 (42S02): Table 'dai32mall.sutdent' doesn't exist
+mysql> INSERT INTO student (id, sn, name) VALUES
+    -> (102, 20001, '²ÜÃÏµÂ'),
+    -> (103, 20002, 'ËïÖÙÄ±');
+Query OK, 2 rows affected (0.32 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+-------+-----------+---------+
+| id   | sn    | name      | qq_mail |
++------+-------+-----------+---------+
+|  100 | 10000 | tsz       | NULL    |
+|  101 | 10001 | swk       | 11111   |
+|  102 | 20001 | ²ÜÃÏµÂ    | NULL    |
+|  103 | 20002 | ËïÖÙÄ±    | NULL    |
++------+-------+-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> DROP TABLE IF EXISTS exam_result;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> CREATE TABLE exam_result (
+    -> id INT,
+    -> name VARCHAR(20),
+    -> chinese DECIMAL(3,1),
+    -> math DECIMAL(3,1),
+    -> english DECIMAL(3,1)
+    -> );
+Query OK, 0 rows affected (0.65 sec)
+
+mysql> desc exam_result;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(20)  | YES  |     | NULL    |       |
+| chinese | decimal(3,1) | YES  |     | NULL    |       |
+| math    | decimal(3,1) | YES  |     | NULL    |       |
+| english | decimal(3,1) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select  * from exam_student;
+ERROR 1146 (42S02): Table 'dai32mall.exam_student' doesn't exist
+mysql> select  * from exam_result;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO exam_result (id,name, chinese, math, english) VALUES
+    -> (1,'ÌÆÈý²Ø', 67, 98, 56),
+    -> (2,'ËïÎò¿Õ', 87.5, 78, 77),
+    -> (3,'ÖíÎòÄÜ', 88, 98.5, 90),
+    -> (4,'²ÜÃÏµÂ', 82, 84, 67),
+    -> (5,'ÁõÐþµÂ', 55.5, 85, 45),
+    -> (6,'ËïÈ¨', 70, 73, 78.5),
+    -> (7,'ËÎ¹«Ã÷', 75, 65, 30);
+Query OK, 7 rows affected (0.32 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from exam_result;
++------+-----------+---------+------+---------+
+| id   | name      | chinese | math | english |
++------+-----------+---------+------+---------+
+|    1 | ÌÆÈý²Ø    |    67.0 | 98.0 |    56.0 |
+|    2 | ËïÎò¿Õ    |    87.5 | 78.0 |    77.0 |
+|    3 | ÖíÎòÄÜ    |    88.0 | 98.5 |    90.0 |
+|    4 | ²ÜÃÏµÂ    |    82.0 | 84.0 |    67.0 |
+|    5 | ÁõÐþµÂ    |    55.5 | 85.0 |    45.0 |
+|    6 | ËïÈ¨      |    70.0 | 73.0 |    78.5 |
+|    7 | ËÎ¹«Ã÷    |    75.0 | 65.0 |    30.0 |
++------+-----------+---------+------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select id,name,english from exam_result;
++------+-----------+---------+
+| id   | name      | english |
++------+-----------+---------+
+|    1 | ÌÆÈý²Ø    |    56.0 |
+|    2 | ËïÎò¿Õ    |    77.0 |
+|    3 | ÖíÎòÄÜ    |    90.0 |
+|    4 | ²ÜÃÏµÂ    |    67.0 |
+|    5 | ÁõÐþµÂ    |    45.0 |
+|    6 | ËïÈ¨      |    78.5 |
+|    7 | ËÎ¹«Ã÷    |    30.0 |
++------+-----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select id,name,chinese from exam_result;
++------+-----------+---------+
+| id   | name      | chinese |
++------+-----------+---------+
+|    1 | ÌÆÈý²Ø    |    67.0 |
+|    2 | ËïÎò¿Õ    |    87.5 |
+|    3 | ÖíÎòÄÜ    |    88.0 |
+|    4 | ²ÜÃÏµÂ    |    82.0 |
+|    5 | ÁõÐþµÂ    |    55.5 |
+|    6 | ËïÈ¨      |    70.0 |
+|    7 | ËÎ¹«Ã÷    |    75.0 |
++------+-----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select id,name,math from exam_result;
++------+-----------+------+
+| id   | name      | math |
++------+-----------+------+
+|    1 | ÌÆÈý²Ø    | 98.0 |
+|    2 | ËïÎò¿Õ    | 78.0 |
+|    3 | ÖíÎòÄÜ    | 98.5 |
+|    4 | ²ÜÃÏµÂ    | 84.0 |
+|    5 | ÁõÐþµÂ    | 85.0 |
+|    6 | ËïÈ¨      | 73.0 |
+|    7 | ËÎ¹«Ã÷    | 65.0 |
++------+-----------+------+
+7 rows in set (0.00 sec)
+
+mysql> select id,name,10 from exam_result;
++------+-----------+----+
+| id   | name      | 10 |
++------+-----------+----+
+|    1 | ÌÆÈý²Ø    | 10 |
+|    2 | ËïÎò¿Õ    | 10 |
+|    3 | ÖíÎòÄÜ    | 10 |
+|    4 | ²ÜÃÏµÂ    | 10 |
+|    5 | ÁõÐþµÂ    | 10 |
+|    6 | ËïÈ¨      | 10 |
+|    7 | ËÎ¹«Ã÷    | 10 |
++------+-----------+----+
+7 rows in set (0.00 sec)
+
+mysql> select id,name,english+10 from exam_result;
++------+-----------+------------+
+| id   | name      | english+10 |
++------+-----------+------------+
+|    1 | ÌÆÈý²Ø    |       66.0 |
+|    2 | ËïÎò¿Õ    |       87.0 |
+|    3 | ÖíÎòÄÜ    |      100.0 |
+|    4 | ²ÜÃÏµÂ    |       77.0 |
+|    5 | ÁõÐþµÂ    |       55.0 |
+|    6 | ËïÈ¨      |       88.5 |
+|    7 | ËÎ¹«Ã÷    |       40.0 |
++------+-----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select id,name,chinese+math+english+10 from exam_result;
++------+-----------+-------------------------+
+| id   | name      | chinese+math+english+10 |
++------+-----------+-------------------------+
+|    1 | ÌÆÈý²Ø    |                   231.0 |
+|    2 | ËïÎò¿Õ    |                   252.5 |
+|    3 | ÖíÎòÄÜ    |                   286.5 |
+|    4 | ²ÜÃÏµÂ    |                   243.0 |
+|    5 | ÁõÐþµÂ    |                   195.5 |
+|    6 | ËïÈ¨      |                   231.5 |
+|    7 | ËÎ¹«Ã÷    |                   180.0 |
++------+-----------+-------------------------+
+7 rows in set (0.27 sec)
+
+mysql> select id,name,chinese+math+english+10 zf from exam_result;
++------+-----------+-------+
+| id   | name      | zf    |
++------+-----------+-------+
+|    1 | ÌÆÈý²Ø    | 231.0 |
+|    2 | ËïÎò¿Õ    | 252.5 |
+|    3 | ÖíÎòÄÜ    | 286.5 |
+|    4 | ²ÜÃÏµÂ    | 243.0 |
+|    5 | ÁõÐþµÂ    | 195.5 |
+|    6 | ËïÈ¨      | 231.5 |
+|    7 | ËÎ¹«Ã÷    | 180.0 |
++------+-----------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select math from exam_result;
++------+
+| math |
++------+
+| 98.0 |
+| 78.0 |
+| 98.5 |
+| 84.0 |
+| 85.0 |
+| 73.0 |
+| 65.0 |
++------+
+7 rows in set (0.00 sec)
+
+mysql> select distinct nath from exam_result;
+ERROR 1054 (42S22): Unknown column 'nath' in 'field list'
+mysql> select distinct math from exam_result;
++------+
+| math |
++------+
+| 98.0 |
+| 78.0 |
+| 98.5 |
+| 84.0 |
+| 85.0 |
+| 73.0 |
+| 65.0 |
++------+
+7 rows in set (0.00 sec)
+
+mysql> select name,qq_mail from student order by qq_mail;
++-----------+---------+
+| name      | qq_mail |
++-----------+---------+
+| tsz       | NULL    |
+| ²ÜÃÏµÂ    | NULL    |
+| ËïÖÙÄ±    | NULL    |
+| swk       | 11111   |
++-----------+---------+
+4 rows in set (0.28 sec)
+
+mysql> select name,qq_mail from student order by qq_mail desc;
++-----------+---------+
+| name      | qq_mail |
++-----------+---------+
+| swk       | 11111   |
+| tsz       | NULL    |
+| ²ÜÃÏµÂ    | NULL    |
+| ËïÖÙÄ±    | NULL    |
++-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> selsect name,math,engilsh,chinese from exam_result;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selsect name,math,engilsh,chinese from exam_result' at line 1
+mysql> selsect name,math,engilsh,chinese from exam_result order by math desc,english,chinese;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selsect name,math,engilsh,chinese from exam_result order by math desc,english,ch' at line 1
+mysql> selsect name,math,engilsh,chinese from exam_result order by math desc,english,chinese;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selsect name,math,engilsh,chinese from exam_result order by math desc,english,ch' at line 1
+mysql> selsect name,math,engilsh,chinese from exam_result order by chinese+english+math desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selsect name,math,engilsh,chinese from exam_result order by chinese+english+math' at line 1
+mysql> SELECT name, chinese + english + math FROM exam_result
+    -> ORDER BY chinese + english + math DESC;
++-----------+--------------------------+
+| name      | chinese + english + math |
++-----------+--------------------------+
+| ÖíÎòÄÜ    |                    276.5 |
+| ËïÎò¿Õ    |                    242.5 |
+| ²ÜÃÏµÂ    |                    233.0 |
+| ËïÈ¨      |                    221.5 |
+| ÌÆÈý²Ø    |                    221.0 |
+| ÁõÐþµÂ    |                    185.5 |
+| ËÎ¹«Ã÷    |                    170.0 |
++-----------+--------------------------+
+7 rows in set (0.28 sec)
+
+mysql> SELECT name, chinese + english + math total FROM exam_result
+    -> ORDER BY total DESC;
++-----------+-------+
+| name      | total |
++-----------+-------+
+| ÖíÎòÄÜ    | 276.5 |
+| ËïÎò¿Õ    | 242.5 |
+| ²ÜÃÏµÂ    | 233.0 |
+| ËïÈ¨      | 221.5 |
+| ÌÆÈý²Ø    | 221.0 |
+| ÁõÐþµÂ    | 185.5 |
+| ËÎ¹«Ã÷    | 170.0 |
++-----------+-------+
+7 rows in set (0.00 sec)
+
+mysql> -- ²éÑ¯Í¬Ñ§¸÷ÃÅ³É¼¨£¬ÒÀ´Î°´ ÊýÑ§½µÐò£¬Ó¢ÓïÉýÐò£¬ÓïÎÄÉýÐòµÄ·½Ê½ÏÔÊ¾
+mysql> SELECT name, math, english, chinese FROM exam_result
+    -> ORDER BY math DESC, english, chinese;
++-----------+------+---------+---------+
+| name      | math | english | chinese |
++-----------+------+---------+---------+
+| ÖíÎòÄÜ    | 98.5 |    90.0 |    88.0 |
+| ÌÆÈý²Ø    | 98.0 |    56.0 |    67.0 |
+| ÁõÐþµÂ    | 85.0 |    45.0 |    55.5 |
+| ²ÜÃÏµÂ    | 84.0 |    67.0 |    82.0 |
+| ËïÎò¿Õ    | 78.0 |    77.0 |    87.5 |
+| ËïÈ¨      | 73.0 |    78.5 |    70.0 |
+| ËÎ¹«Ã÷    | 65.0 |    30.0 |    75.0 |
++-----------+------+---------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select name,english from exam_result where english<60;
++-----------+---------+
+| name      | english |
++-----------+---------+
+| ÌÆÈý²Ø    |    56.0 |
+| ÁõÐþµÂ    |    45.0 |
+| ËÎ¹«Ã÷    |    30.0 |
++-----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select name,chinese from exam_result where english<60;
++-----------+---------+
+| name      | chinese |
++-----------+---------+
+| ÌÆÈý²Ø    |    67.0 |
+| ÁõÐþµÂ    |    55.5 |
+| ËÎ¹«Ã÷    |    75.0 |
++-----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select name,chinese from exam_result where chinese<60;
++-----------+---------+
+| name      | chinese |
++-----------+---------+
+| ÁõÐþµÂ    |    55.5 |
++-----------+---------+
+1 row in set (0.00 sec)
+
+mysql> select name,chinese from exam_result where chinese=67;
++-----------+---------+
+| name      | chinese |
++-----------+---------+
+| ÌÆÈý²Ø    |    67.0 |
++-----------+---------+
+1 row in set (0.00 sec)
+
+mysql> select name,chinese from exam_result where chinese>90;
+Empty set (0.00 sec)
+
+mysql> select name,chinese+math+english zf from exam_result where chinese+math+english<260;
++-----------+-------+
+| name      | zf    |
++-----------+-------+
+| ÌÆÈý²Ø    | 221.0 |
+| ËïÎò¿Õ    | 242.5 |
+| ²ÜÃÏµÂ    | 233.0 |
+| ÁõÐþµÂ    | 185.5 |
+| ËïÈ¨      | 221.5 |
+| ËÎ¹«Ã÷    | 170.0 |
++-----------+-------+
+6 rows in set (0.00 sec)
+
+mysql> -- ²éÑ¯ÓïÎÄ³É¼¨´óÓÚ80·Ö£¬ÇÒÓ¢Óï³É¼¨´óÓÚ80·ÖµÄÍ¬Ñ§
+mysql> select * from exam_result where chinese>80 and math<90;
++------+-----------+---------+------+---------+
+| id   | name      | chinese | math | english |
++------+-----------+---------+------+---------+
+|    2 | ËïÎò¿Õ    |    87.5 | 78.0 |    77.0 |
+|    4 | ²ÜÃÏµÂ    |    82.0 | 84.0 |    67.0 |
++------+-----------+---------+------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from exam_result where chinese>80 or math<90;
++------+-----------+---------+------+---------+
+| id   | name      | chinese | math | english |
++------+-----------+---------+------+---------+
+|    2 | ËïÎò¿Õ    |    87.5 | 78.0 |    77.0 |
+|    3 | ÖíÎòÄÜ    |    88.0 | 98.5 |    90.0 |
+|    4 | ²ÜÃÏµÂ    |    82.0 | 84.0 |    67.0 |
+|    5 | ÁõÐþµÂ    |    55.5 | 85.0 |    45.0 |
+|    6 | ËïÈ¨      |    70.0 | 73.0 |    78.5 |
+|    7 | ËÎ¹«Ã÷    |    75.0 | 65.0 |    30.0 |
++------+-----------+---------+------+---------+
+6 rows in set (0.00 sec)
+
+mysql> -- ¹Û²ìAND ºÍ OR µÄÓÅÏÈ¼¶
+mysql> SELECT * FROM exam_result WHERE chinese > 80 or math>70 and english > 70;
++------+-----------+---------+------+---------+
+| id   | name      | chinese | math | english |
++------+-----------+---------+------+---------+
+|    2 | ËïÎò¿Õ    |    87.5 | 78.0 |    77.0 |
+|    3 | ÖíÎòÄÜ    |    88.0 | 98.5 |    90.0 |
+|    4 | ²ÜÃÏµÂ    |    82.0 | 84.0 |    67.0 |
+|    6 | ËïÈ¨      |    70.0 | 73.0 |    78.5 |
++------+-----------+---------+------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM exam_result WHERE (chinese > 80 or math>70) and english > 70;
++------+-----------+---------+------+---------+
+| id   | name      | chinese | math | english |
++------+-----------+---------+------+---------+
+|    2 | ËïÎò¿Õ    |    87.5 | 78.0 |    77.0 |
+|    3 | ÖíÎòÄÜ    |    88.0 | 98.5 |    90.0 |
+|    6 | ËïÈ¨      |    70.0 | 73.0 |    78.5 |
++------+-----------+---------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select name chinese from exam_result where chinese between 80 and 90;
++-----------+
+| chinese   |
++-----------+
+| ËïÎò¿Õ    |
+| ÖíÎòÄÜ    |
+| ²ÜÃÏµÂ    |
++-----------+
+3 rows in set (0.00 sec)
+
+mysql> select name chinese from exam_result where math between 60 and 90;
++-----------+
+| chinese   |
++-----------+
+| ËïÎò¿Õ    |
+| ²ÜÃÏµÂ    |
+| ÁõÐþµÂ    |
+| ËïÈ¨      |
+| ËÎ¹«Ã÷    |
++-----------+
+5 rows in set (0.00 sec)
+
+mysql> select name from exam_result where name like 'Ëï%';
++-----------+
+| name      |
++-----------+
+| ËïÎò¿Õ    |
+| ËïÈ¨      |
++-----------+
+2 rows in set (0.28 sec)
+
+mysql> select name from exam_result where name like 'Ëï_';
++--------+
+| name   |
++--------+
+| ËïÈ¨   |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select name from exam_result where name like 'Ëï__';
++-----------+
+| name      |
++-----------+
+| ËïÎò¿Õ    |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select name, qq_mail from student where qq_mail is not null;
++------+---------+
+| name | qq_mail |
++------+---------+
+| swk  | 11111   |
++------+---------+
+1 row in set (0.00 sec)
+
+mysql> select name,qq_mail from student where qq_mail is null;
++-----------+---------+
+| name      | qq_mail |
++-----------+---------+
+| tsz       | NULL    |
+| ²ÜÃÏµÂ    | NULL    |
+| ËïÖÙÄ±    | NULL    |
++-----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select name,qq_mail from student where qq_mail is 11111;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '11111' at line 1
+mysql> select id,name,math,english,chinese from exam_result order by id limit 3 offset 0;
++------+-----------+------+---------+---------+
+| id   | name      | math | english | chinese |
++------+-----------+------+---------+---------+
+|    1 | ÌÆÈý²Ø    | 98.0 |    56.0 |    67.0 |
+|    2 | ËïÎò¿Õ    | 78.0 |    77.0 |    87.5 |
+|    3 | ÖíÎòÄÜ    | 98.5 |    90.0 |    88.0 |
++------+-----------+------+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select id,name,math,english,chinese from exam_result order by id limit 3 offset 3;
++------+-----------+------+---------+---------+
+| id   | name      | math | english | chinese |
++------+-----------+------+---------+---------+
+|    4 | ²ÜÃÏµÂ    | 84.0 |    67.0 |    82.0 |
+|    5 | ÁõÐþµÂ    | 85.0 |    45.0 |    55.5 |
+|    6 | ËïÈ¨      | 73.0 |    78.5 |    70.0 |
++------+-----------+------+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select id,name,math,english,chinese from exam_result order by id limit 3 offset 9;
+Empty set (0.00 sec)
+
+mysql> select id,name,math,english,chinese from exam_result order by id limit 2 offset 4;
++------+-----------+------+---------+---------+
+| id   | name      | math | english | chinese |
++------+-----------+------+---------+---------+
+|    5 | ÁõÐþµÂ    | 85.0 |    45.0 |    55.5 |
+|    6 | ËïÈ¨      | 73.0 |    78.5 |    70.0 |
++------+-----------+------+---------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select id,name,math,english,chinese from exam_result order by id limit 4 offset 4;
++------+-----------+------+---------+---------+
+| id   | name      | math | english | chinese |
++------+-----------+------+---------+---------+
+|    5 | ÁõÐþµÂ    | 85.0 |    45.0 |    55.5 |
+|    6 | ËïÈ¨      | 73.0 |    78.5 |    70.0 |
+|    7 | ËÎ¹«Ã÷    | 65.0 |    30.0 |    75.0 |
++------+-----------+------+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select id,name,math,english,chinese from exam_result order by id limit 4 offset 3;
++------+-----------+------+---------+---------+
+| id   | name      | math | english | chinese |
++------+-----------+------+---------+---------+
+|    4 | ²ÜÃÏµÂ    | 84.0 |    67.0 |    82.0 |
+|    5 | ÁõÐþµÂ    | 85.0 |    45.0 |    55.5 |
+|    6 | ËïÈ¨      | 73.0 |    78.5 |    70.0 |
+|    7 | ËÎ¹«Ã÷    | 65.0 |    30.0 |    75.0 |
++------+-----------+------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> delete from exam_result where name='swk';
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> desc exam_result;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(20)  | YES  |     | NULL    |       |
+| chinese | decimal(3,1) | YES  |     | NULL    |       |
+| math    | decimal(3,1) | YES  |     | NULL    |       |
+| english | decimal(3,1) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> -- É¾³ýÕûÕÅÊý¾Ý±í
+mysql> delete table if exists for _delete;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table if exists for _delete' at line 1
+mysql> drop table if exists for _delete;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'for _delete' at line 1
+mysql> drop table if exists for_delete;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| dai32mall          |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> desc exam_result;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(20)  | YES  |     | NULL    |       |
+| chinese | decimal(3,1) | YES  |     | NULL    |       |
+| math    | decimal(3,1) | YES  |     | NULL    |       |
+| english | decimal(3,1) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table for-table(
+    -> id int,
+    -> name carchar(32),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'for-table(
+id int,
+name carchar(32),
+)' at line 1
+mysql> create table for_table(
+    -> id int,
+    -> name varchar
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 4
+mysql> create table for_table
+    -> (
+    -> id int,
+    -> name varchar(32)
+    -> );
+Query OK, 0 rows affected (0.68 sec)
+
+mysql> insert into for_delete(name) values('A'),('B'),('C');
+ERROR 1146 (42S02): Table 'dai32mall.for_delete' doesn't exist
+mysql> INSERT INTO for_delete (name) VALUES ('A'), ('B'), ('C');
+ERROR 1146 (42S02): Table 'dai32mall.for_delete' doesn't exist
+mysql> delete from for_delete;
+ERROR 1146 (42S02): Table 'dai32mall.for_delete' doesn't exist
+mysql> desc exam_resylt;
+ERROR 1146 (42S02): Table 'dai32mall.exam_resylt' doesn't exist
+mysql>
